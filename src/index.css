@@ -15,3 +15,7 @@
     
     --font-nunito: "Nunito", sans-serif;
 }
+
+body {
+    @apply bg-base-background font-nunito font-normal text-base text-base-title 
+}
