@@ -13,10 +13,10 @@ export function ProfileCard() {
     return (
         <div className="flex justify-center items-center">
             <div className="absolute w-[54rem] h-[14rem] mt-12 bg-base-profile rounded-[10px] shadow-lg shadow-black/40">
-                { !userData ? 
-                    <Loading />
-                : !username ?  
+                { !username ? 
                     <EmptyInfo />
+                : !userData ?  
+                    <Loading />
                 :(
                     <div className="flex h-full items-center px-10 py-10">
                         <img
@@ -26,14 +26,14 @@ export function ProfileCard() {
                         />
                         <div className="flex flex-col ml-10 w-full h-full">
                             <div className="flex items-center justify-between">
-                                <h1 className="text-2xl font-bold">{userData.name || userData.login}</h1>
-                                <a href={userData.html_url} className="flex items-center gap-2 font-bold text-blue">
+                                <h1 className="text-base-title text-2xl font-bold">{userData.name || userData.login}</h1>
+                                <a href={userData.html_url} className="flex items-center gap-2 font-bold text-blue hover:underline hover:cursor-pointer">
                                     GitHub
                                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-sm"/>
                                 </a>
                             </div>
 
-                            <h2 className="mt-2.5 text-base-subtitle">
+                            <h2 className="mt-2.5 text-base-text">
                                 {userData.bio || "No bio available"}
                             </h2>
 

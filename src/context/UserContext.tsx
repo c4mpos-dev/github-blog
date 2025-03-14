@@ -15,7 +15,6 @@ interface UserContextType {
     username: string;
     setUsername: React.Dispatch<React.SetStateAction<string>>;
     userData: UserData | null;
-    fetchUserData: (username: string) => Promise<void>;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -28,18 +27,21 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         try {
             const response = await api.get(`/users/${username}`);
             setUserData(response.data);
-            console.log(response.data)
         } catch (error) {
             console.error("Erro ao buscar dados:", error);
         }
     }
 
     useEffect(() => {
-        fetchUserData(username);
+        if (username) {
+            fetchUserData(username);
+        }
+
+        setUserData(null);
     }, [username]);
 
     return (
-        <UserContext.Provider value={{ username, setUsername, userData, fetchUserData }}>
+        <UserContext.Provider value={{ username, setUsername, userData }}>
             {children}
         </UserContext.Provider>
     );
