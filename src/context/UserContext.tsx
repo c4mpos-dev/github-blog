@@ -52,6 +52,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         try {
             const response = await api.get(`/users/${username}/repos?sort=stars`);
             setRepositories(response.data);
+            console.log(response.data)
         } catch (error) {
             console.error("Erro ao buscar repositórios:", error);
             setRepositories([]);

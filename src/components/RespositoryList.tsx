@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCode, faArrowUpRightFromSquare, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -5,7 +7,9 @@ import { useUser } from "../hooks/useUser";
 
 import { EmptyInfo } from "./EmptyInfo";
 
+
 export function RepositoryList() {
+    const navigate = useNavigate();
     const { repositories, page, setPage } = useUser();
     
     const reposPerPage = 9; 
@@ -21,7 +25,11 @@ export function RepositoryList() {
                 <div>
                     <div className="grid grid-cols-3 gap-4">
                         {displayedRepos.map((repo) => (
-                            <div key={repo.id} className="flex flex-col w-full h-48 p-[18px] bg-base-post rounded-lg shadow-md shadow-black/50 duration-200 hover:scale-105">
+                            <div 
+                                key={repo.id} 
+                                className="flex flex-col w-full h-48 p-[18px] bg-base-post rounded-lg shadow-md shadow-black/50 duration-200 hover:scale-105 hover:cursor-pointer"
+                                onClick={() => navigate(`/repository/${repo.name}`, { state: repo })}
+                            >
                                 <h3 className="text-xl mb-3.5 font-bold text-base-title line-clamp-1">{repo.name}</h3>
                                 <p className="text-sm text-base-text line-clamp-2">{repo.description || "No description."}</p>
 
@@ -47,7 +55,7 @@ export function RepositoryList() {
                         <button 
                             onClick={() => setPage(page - 1)}
                             disabled={page === 1}
-                            className="px-4 py-2 bg-base-post text-white rounded-md shadow-md shadow-black/50 cursor-pointer duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
+                            className="px-4 py-2 bg-base-post text-base-title rounded-md shadow-md shadow-black/50 cursor-pointer duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
                         >
                             <FontAwesomeIcon icon={faChevronLeft} />
                         </button>
@@ -59,7 +67,7 @@ export function RepositoryList() {
                         <button 
                             onClick={() => setPage(page + 1)}
                             disabled={page === totalPages}
-                            className="px-4 py-2 bg-base-post text-white rounded-md shadow-md shadow-black/50 cursor-pointer duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
+                            className="px-4 py-2 bg-base-post text-base-title rounded-md shadow-md shadow-black/50 cursor-pointer duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
                         >
                             <FontAwesomeIcon icon={faChevronRight} />
                         </button>
