@@ -11,10 +11,22 @@ interface UserData {
     followers: number;
 }
 
+interface Repository {
+    id: number;
+    name: string;
+    html_url: string;
+    description?: string;
+    stargazers_count: number;
+    language?: string;
+}
+
 interface UserContextType {
     username: string;
     setUsername: React.Dispatch<React.SetStateAction<string>>;
     userData: UserData | null;
+    repositories: Repository[]; 
+    page: number;
+    setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -22,6 +34,8 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider = ({ children }: { children: ReactNode }) => {
     const [username, setUsername] = useState('');
     const [userData, setUserData] = useState<UserData | null>(null);
+    const [repositories, setRepositories] = useState<Repository[]>([]);
+    const [page, setPage] = useState(1);
 
     async function fetchUserData(username: string) {
         try {
@@ -29,19 +43,34 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
             setUserData(response.data);
         } catch (error) {
             console.error("Erro ao buscar dados:", error);
+            setUserData(null);
+            setUsername('');
+        }
+    }
+
+    async function fetchUserRepositories(username: string) {
+        try {
+            const response = await api.get(`/users/${username}/repos?sort=stars`);
+            setRepositories(response.data);
+        } catch (error) {
+            console.error("Erro ao buscar repositórios:", error);
+            setRepositories([]);
         }
     }
 
     useEffect(() => {
         if (username) {
             fetchUserData(username);
+            fetchUserRepositories(username);
         }
 
+        setPage(1);
         setUserData(null);
+        setRepositories([]);
     }, [username]);
 
     return (
-        <UserContext.Provider value={{ username, setUsername, userData }}>
+        <UserContext.Provider value={{ username, setUsername, userData, repositories, page, setPage }}>
             {children}
         </UserContext.Provider>
     );

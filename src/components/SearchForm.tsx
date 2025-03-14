@@ -14,7 +14,7 @@ const searchFormSchema = z.object({
 type SearchFormInputs = z.infer<typeof searchFormSchema>;
 
 export function SearchForm() {
-    const { setUsername } = useUser();
+    const { setUsername, repositories } = useUser();
     
     const { 
         register, 
@@ -31,20 +31,27 @@ export function SearchForm() {
     }
 
     return (
-        <div className="flex justify-center w-[54rem] mt-[138px]">
-            <form onSubmit={handleSubmit(handleSearchUser)} className="flex w-full justify-between h-14 mt-20 gap-3">
-                <input 
-                    type="text" 
-                    placeholder="Buscar usuários" 
-                    className="flex-1 px-4 py-3 bg-base-input border-[1px] border-base-border rounded-md placeholder:text-base-label focus:border-blue focus:outline-none"
-                    {...register("username")}
-                />
+        <div className="mt-[138px]">
+            <div className="flex justify-between items-center mb-2 mt-12">
+                <h2 className="text-lg text-base-subtitle font-bold">User</h2>
+                <span className="text-sm text-base-span">{repositories.length ? `${repositories.length} repositories` : ''}</span>
+            </div>
 
-                <button type="submit" disabled={isSubmitting} className="flex justify-center items-center border-[1px] border-base-border rounded-md px-4 gap-2 duration-200 hover:bg-base-border ">
-                    <FontAwesomeIcon icon={faMagnifyingGlass} className="text-sm"/>
-                    Buscar
-                </button>
-            </form>
+            <div className="flex justify-center w-[54rem]">
+                <form onSubmit={handleSubmit(handleSearchUser)} className="flex w-full justify-between h-14 gap-3">
+                    <input 
+                        type="text" 
+                        placeholder="Search user" 
+                        className="flex-1 px-4 py-3 bg-base-input border-[1px] border-base-border rounded-md placeholder:text-base-label focus:border-blue focus:outline-none"
+                        {...register("username")}
+                    />
+
+                    <button type="submit" disabled={isSubmitting} className="flex justify-center items-center border-[1px] border-base-border rounded-md px-4 gap-2 duration-200 hover:bg-base-border ">
+                        <FontAwesomeIcon icon={faMagnifyingGlass} className="text-sm"/>
+                        Search
+                    </button>
+                </form>
+        </div>
         </div>
     );
 }

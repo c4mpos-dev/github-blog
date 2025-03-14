@@ -14,7 +14,7 @@ export function ProfileCard() {
         <div className="flex justify-center items-center">
             <div className="absolute w-[54rem] h-[14rem] mt-12 bg-base-profile rounded-[10px] shadow-lg shadow-black/40">
                 { !username ? 
-                    <EmptyInfo />
+                    <EmptyInfo variant="profile"/>
                 : !userData ?  
                     <Loading />
                 :(
