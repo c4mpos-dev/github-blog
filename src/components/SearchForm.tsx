@@ -31,13 +31,13 @@ export function SearchForm() {
     }
 
     return (
-        <div className="mt-[138px]">
+        <div className="mt-[160px] sm:mt-[138px]">
             <div className="flex justify-between items-center mb-2 mt-12">
                 <h2 className="text-lg text-base-subtitle font-bold">User</h2>
                 <span className="text-sm text-base-span">{repositories.length ? `${repositories.length} repositories` : ''}</span>
             </div>
 
-            <div className="flex justify-center w-[54rem]">
+            <div className="flex justify-center w-[20rem] sm:w-[34rem] md:w-[44rem] lg:w-[54rem]">
                 <form onSubmit={handleSubmit(handleSearchUser)} className="flex w-full justify-between h-14 gap-3">
                     <input 
                         type="text" 
@@ -48,7 +48,7 @@ export function SearchForm() {
 
                     <button type="submit" disabled={isSubmitting} className="flex justify-center items-center border-[1px] border-base-border rounded-md px-4 gap-2 duration-200 hover:bg-base-border ">
                         <FontAwesomeIcon icon={faMagnifyingGlass} className="text-sm"/>
-                        Search
+                        <p className="hidden sm:flex">Search</p> 
                     </button>
                 </form>
             </div>

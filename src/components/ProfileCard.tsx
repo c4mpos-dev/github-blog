@@ -12,45 +12,47 @@ export function ProfileCard() {
 
     return (
         <div className="flex justify-center items-center">
-            <div className="absolute w-[54rem] h-[14rem] mt-12 bg-base-profile rounded-[10px] shadow-lg shadow-black/40">
+            <div className="absolute w-[20rem] sm:w-[34rem] md:w-[44rem] lg:w-[54rem] sm:h-[12rem] md:h-[14rem] mt-12 bg-base-profile rounded-[10px] shadow-lg shadow-black/40">
                 { !username ? 
                     <EmptyInfo variant="profile"/>
                 : !userData ?  
                     <Loading />
                 :(
-                    <div className="flex h-full items-center px-10 py-10">
+                    <div className="flex flex-col sm:flex-row h-full items-center gap-4 sm:gap-6 md:gap-8 p-5 sm:p-5 md:p-10">
                         <img
                             src={userData.avatar_url} 
                             alt="User photo"
-                            className="w-40 h-40 border-2 border-base-border rounded-lg shadow-md shadow-black/30"
+                            className="w-32 h-32 md:w-40 md:h-40 border-2 border-base-border rounded-lg shadow-md shadow-black/30"
                         />
-                        <div className="flex flex-col ml-10 w-full h-full">
+                        <div className="flex flex-col w-full h-full sm:py-3 md:py-0">
                             <div className="flex items-center justify-between">
-                                <h1 className="text-base-title text-2xl font-bold">{userData.name || userData.login}</h1>
+                                <h1 className="text-base-title line-clamp-1 sm:text-xl md:text-2xl font-bold">
+                                    {userData.name || userData.login}
+                                </h1>
                                 <a href={userData.html_url} className="flex items-center gap-2 font-bold text-blue hover:underline hover:cursor-pointer">
                                     GitHub
                                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-sm"/>
                                 </a>
                             </div>
 
-                            <h2 className="mt-2.5 text-base-text">
+                            <h2 className="mt-2.5 text-base-text line-clamp-2 md:line-clamp-4">
                                 {userData.bio || "No bio available"}
                             </h2>
 
-                            <div className="flex mt-auto gap-6 text-base-subtitle">
-                                <div className="flex items-center gap-2">
-                                    <FontAwesomeIcon icon={faGithub} className="text-lg text-base-label"/>
+                            <div className="flex jus mt-3 sm:mt-auto gap-4 sm:gap-3 text-base-subtitle text-sm md:text-base">
+                                <div className="hidden sm:flex items-center gap-2">
+                                    <FontAwesomeIcon icon={faGithub} className="text-base-label"/>
                                     {userData.login}
                                 </div>
 
                                 <div className="flex items-center gap-2">
-                                    <FontAwesomeIcon icon={faBuilding} className="text-lg text-base-label"/>
-                                    {userData.company || "No company"}
+                                    <FontAwesomeIcon icon={faBuilding} className="text-base-label"/>
+                                    <p className="line-clamp-1">{userData.company || "No company"}</p>
                                 </div>
 
                                 <div className="flex items-center gap-2">
-                                    <FontAwesomeIcon icon={faUserGroup} className="text-lg text-base-label"/>
-                                    {userData.followers} seguidores
+                                    <FontAwesomeIcon icon={faUserGroup} className="text-base-label"/>
+                                    <p className="line-clamp-1">{userData.followers} followers</p>
                                 </div>
                             </div>
                         </div>

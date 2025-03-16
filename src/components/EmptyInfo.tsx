@@ -17,7 +17,7 @@ export function EmptyInfo({ variant }: EmptyInfoProps) {
         );
     } else {
         return (
-            <div className="w-[54rem] mt-6 mb-5">
+            <div className="lg:w-[54rem] mt-6 mb-5">
                 <div className="flex flex-col w-full h-48 p-[18px] bg-base-post rounded-lg shadow-md shadow-black/50 duration-200 hover:scale-105">
                     <div className="flex h-full justify-center items-center">
                         { !username ? 

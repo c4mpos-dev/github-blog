@@ -12,18 +12,18 @@ export function RepositoryList() {
     const navigate = useNavigate();
     const { repositories, page, setPage } = useUser();
     
-    const reposPerPage = 9; 
+    const reposPerPage = window.innerWidth <= 768 ? 6 : 9; 
+    
     const totalPages = Math.ceil(repositories.length / reposPerPage);
-
     const displayedRepos = repositories.slice((page - 1) * reposPerPage, page * reposPerPage);
 
     return (
-        <div className="w-[54rem] mt-6 mb-16">
+        <div className="w-[20rem] sm:w-[34rem] md:w-[44rem] lg:w-[54rem] mt-6 mb-16">
             { !repositories.length ? 
                 <EmptyInfo variant="repository"/>
             : (
                 <div>
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {displayedRepos.map((repo) => (
                             <div 
                                 key={repo.id} 
