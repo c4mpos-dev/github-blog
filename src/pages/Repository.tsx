@@ -68,7 +68,7 @@ export function Repository() {
                     <div className="flex items-center gap-2">
                         <span className="flex items-center gap-2 font-bold">
                             <FontAwesomeIcon icon={faScaleBalanced}/>
-                            LICENSE:
+                            <p className="hidden sm:flex">LICENSE:</p>
                         </span>
                         <span className="">{repo.license?.name || "No License"}</span>
                     </div>
