@@ -18,6 +18,7 @@ interface Repository {
     description?: string;
     stargazers_count: number;
     language?: string;
+    topics?: string[];
 }
 
 interface UserContextType {
@@ -50,9 +51,13 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
     async function fetchUserRepositories(username: string) {
         try {
-            const response = await api.get(`/users/${username}/repos?sort=stars`);
+            const response = await api.get(`/users/${username}/repos`, {
+                params: {
+                    sort: "updated",
+                    per_page: 100
+                }
+            });
             setRepositories(response.data);
-            console.log(response.data)
         } catch (error) {
             console.error("Erro ao buscar repositórios:", error);
             setRepositories([]);
@@ -60,14 +65,14 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }
 
     useEffect(() => {
+        setPage(1);
+        setUserData(null);
+        setRepositories([]);
+
         if (username) {
             fetchUserData(username);
             fetchUserRepositories(username);
         }
-
-        setPage(1);
-        setUserData(null);
-        setRepositories([]);
     }, [username]);
 
     return (

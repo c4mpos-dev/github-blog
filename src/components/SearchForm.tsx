@@ -51,7 +51,7 @@ export function SearchForm() {
                         Search
                     </button>
                 </form>
-        </div>
+            </div>
         </div>
     );
 }
