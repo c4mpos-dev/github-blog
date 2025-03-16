@@ -28,6 +28,7 @@ interface UserContextType {
     repositories: Repository[]; 
     page: number;
     setPage: React.Dispatch<React.SetStateAction<number>>;
+    error: string | null;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -37,15 +38,19 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     const [userData, setUserData] = useState<UserData | null>(null);
     const [repositories, setRepositories] = useState<Repository[]>([]);
     const [page, setPage] = useState(1);
+    const [error, setError] = useState<string | null>(null);
 
     async function fetchUserData(username: string) {
         try {
+            setError(null);
             const response = await api.get(`/users/${username}`);
             setUserData(response.data);
-        } catch (error) {
-            console.error("Erro ao buscar dados:", error);
+        } catch {
+            setError("Erro ao buscar dados do usuário. Verifique o nome e tente novamente.");
             setUserData(null);
             setUsername('');
+
+            setTimeout(() => setError(null), 3000);
         }
     }
 
@@ -58,8 +63,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
                 }
             });
             setRepositories(response.data);
-        } catch (error) {
-            console.error("Erro ao buscar repositórios:", error);
+        } catch {
             setRepositories([]);
         }
     }
@@ -76,7 +80,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }, [username]);
 
     return (
-        <UserContext.Provider value={{ username, setUsername, userData, repositories, page, setPage }}>
+        <UserContext.Provider value={{ username, setUsername, userData, repositories, page, setPage, error }}>
             {children}
         </UserContext.Provider>
     );
