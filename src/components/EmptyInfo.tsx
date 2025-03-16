@@ -10,9 +10,9 @@ export function EmptyInfo({ variant }: EmptyInfoProps) {
 
     if (variant === "profile") {
         return (
-            <div className="flex flex-col h-full justify-center items-center">
+            <div className="flex flex-col h-56 sm:h-full justify-center items-center p-10 sm:p-0">
                 <h1 className="text-base-text text-lg uppercase font-bold animate-bounce">Search for any user</h1>
-                <p className="text-base-label">To display profile data, you need to search for a valid user</p>
+                <p className="text-base-label px-3 sm:px-0">To display profile data, you need to search for a valid user</p>
             </div>
         );
     } else {
@@ -23,7 +23,7 @@ export function EmptyInfo({ variant }: EmptyInfoProps) {
                         { !username ? 
                             <div className="flex flex-col items-center">
                                 <h1 className="text-base-text text-lg uppercase font-bold animate-bounce">Search for any user</h1>
-                                <p className="text-base-label">To display the repositories, you need to find a valid user</p>
+                                <p className="text-base-label px-9 sm:px-0">To display the repositories, you need to find a valid user</p>
                             </div>
                         :(
                             <Loading />
