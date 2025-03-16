@@ -23,7 +23,7 @@ export function Repository() {
     }, [repo, userData, navigate]);
 
     return (
-        <div className="flex items-center flex-col">
+        <div className="flex items-center flex-col mb-16">
             <div className="flex justify-center items-center">
                 <div className="absolute w-[20rem] sm:w-[34rem] md:w-[44rem] lg:w-[54rem] p-6 bg-base-profile rounded-lg shadow-lg shadow-black/50">
                     <div className="flex justify-between items-center mb-4 text-blue hover:underline hover:cursor-pointer" onClick={() => navigate('/')}>
