@@ -29,6 +29,7 @@ interface UserContextType {
     page: number;
     setPage: React.Dispatch<React.SetStateAction<number>>;
     error: string | null;
+    isLoadingRepository: boolean;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -39,6 +40,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     const [repositories, setRepositories] = useState<Repository[]>([]);
     const [page, setPage] = useState(1);
     const [error, setError] = useState<string | null>(null);
+    const [isLoadingRepository, setIsLoadingRepository] = useState(false);
 
     async function fetchUserData(username: string) {
         try {
@@ -56,6 +58,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
     async function fetchUserRepositories(username: string) {
         try {
+            setIsLoadingRepository(true);
             const response = await api.get(`/users/${username}/repos`, {
                 params: {
                     sort: "updated",
@@ -65,6 +68,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
             setRepositories(response.data);
         } catch {
             setRepositories([]);
+        } finally {
+            setIsLoadingRepository(false);
         }
     }
 
@@ -80,7 +85,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }, [username]);
 
     return (
-        <UserContext.Provider value={{ username, setUsername, userData, repositories, page, setPage, error }}>
+        <UserContext.Provider value={{ username, setUsername, userData, repositories, page, setPage, error, isLoadingRepository }}>
             {children}
         </UserContext.Provider>
     );
