@@ -6,7 +6,7 @@ interface EmptyInfoProps {
 }
 
 export function EmptyInfo({ variant }: EmptyInfoProps) {
-    const { username } = useUser();
+    const { username, repositories } = useUser();
 
     if (variant === "profile") {
         return (
@@ -25,8 +25,10 @@ export function EmptyInfo({ variant }: EmptyInfoProps) {
                                 <h1 className="text-base-text text-lg uppercase font-bold animate-bounce">Search for any user</h1>
                                 <p className="text-base-label px-9 sm:px-0">To display the repositories, you need to find a valid user</p>
                             </div>
-                        :(
-                            <Loading />
+                        :(  
+                            !repositories.length ?
+                                <h1 className="text-base-subtitle text-lg p-8">{username} doesn't have any public repositories yet.</h1>
+                            :   <Loading />
                         )}
                     </div>
                 </div>
