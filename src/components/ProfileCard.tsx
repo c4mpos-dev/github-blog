@@ -29,7 +29,7 @@ export function ProfileCard() {
                                 <h1 className="text-base-title line-clamp-1 sm:text-xl md:text-2xl font-bold">
                                     {userData.name || userData.login}
                                 </h1>
-                                <a href={userData.html_url} className="flex items-center gap-2 font-bold text-blue hover:underline hover:cursor-pointer">
+                                <a href={userData.html_url} target="_blank" className="flex items-center gap-2 font-bold text-blue hover:underline hover:cursor-pointer">
                                     GitHub
                                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-sm"/>
                                 </a>

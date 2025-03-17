@@ -32,7 +32,7 @@ export function Repository() {
                             Back
                         </span>
                         
-                        <a href={repo.html_url} className="flex items-center gap-2 hover:underline">
+                        <a href={repo.html_url} target="_blank" className="flex items-center gap-2 hover:underline">
                             Ver no GitHub
                             <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-sm"/>
                         </a>
