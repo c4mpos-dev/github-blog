@@ -1,54 +1,49 @@
-# React + TypeScript + Vite
+<h1 align="center">
+    💻 GitHub Blog
+</h1> 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <img alt="Banner" title="Banner" src="./src/assets/templates/banner.png"/>
+</p>
 
-Currently, two official plugins are available:
+## 📌 Sobre o Projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+O **GitHub Blog** é um projeto que permite que você busque diferentes usuários do GitHub, onde há um resumo rápido dele e de seus repositórios, para alimentar a aplicação foi utilizada a API oficial do GitHub.
 
-## Expanding the ESLint configuration
+É importante ressaltar que apesar de ser um desafio Ignite da trilha de React da RocketSeat, o projeto foi completamente adaptado e adicionado funcionalidades novas.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Tecnologias Utilizadas
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+O projeto foi desenvolvido com as seguintes tecnologias:
+
+- [React](https://react.dev/)
+- [Vite](https://vite.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [API GitHub](https://docs.github.com/pt/rest)
+- Também foram utilizadas algumas bibliotecas para compor e otimizar o projeto, basta olhar o package.json
+
+## 🔧 Requisitos
+
+Antes de iniciar o projeto, certifique-se de ter instalado:
+
+- [Node.js](https://nodejs.org/)
+
+---
+
+## 📦 Como Executar o Projeto (Dev)
+
+### 1️⃣ Clonando o Repositório
+```bash
+$ git clone git@github.com:c4mpos-dev/github-blog.git
+$ cd github-blog
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2️⃣ Instalando Dependências
+```bash
+$ npm i
+```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### 3️⃣ Executando a aplicação
+```bash
+$ npm run dev
 ```
