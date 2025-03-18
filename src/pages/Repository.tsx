@@ -86,10 +86,10 @@ export function Repository() {
                     <p>{repo.description || "No description."}</p>
                 </div>
 
-                <div className="flex items-center mt-4 gap-4 text-sm sm:text-base">
+                <div className="flex items-center mt-4 gap-3 text-xs sm:text-base">
                     <span className="flex items-center gap-2">
                         <FontAwesomeIcon icon={faHammer}/>
-                        <p className="hidden sm:flex">Created</p> 
+                        <p className="hidden sm:flex">Created:</p> 
                         {formatDistanceToNow(repo.created_at, { addSuffix: true })}
                     </span>
 
@@ -97,7 +97,7 @@ export function Repository() {
 
                     <span className="flex items-center gap-2">
                         <FontAwesomeIcon icon={faRotateRight}/>
-                        <p className="hidden sm:flex">Updated</p> 
+                        <p className="hidden sm:flex">Updated:</p> 
                         {formatDistanceToNow(repo.updated_at, { addSuffix: true })}
                     </span>
                 </div>
