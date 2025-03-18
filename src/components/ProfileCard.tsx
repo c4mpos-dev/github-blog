@@ -36,10 +36,10 @@ export function ProfileCard() {
                             </div>
 
                             <h2 className="mt-2.5 text-base-text line-clamp-2 md:line-clamp-4">
-                                {userData.bio || "No bio available"}
+                                {userData.bio || "No bio available."}
                             </h2>
 
-                            <div className="flex jus mt-3 sm:mt-auto gap-4 sm:gap-3 text-base-subtitle text-sm md:text-base">
+                            <div className="flex jus mt-3 sm:mt-auto gap-4 sm:gap-3 md:gap-6 text-base-subtitle text-sm md:text-base">
                                 <div className="hidden sm:flex items-center gap-2">
                                     <FontAwesomeIcon icon={faGithub} className="text-base-label"/>
                                     {userData.login}

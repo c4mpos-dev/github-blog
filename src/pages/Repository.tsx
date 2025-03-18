@@ -70,13 +70,16 @@ export function Repository() {
                             <FontAwesomeIcon icon={faScaleBalanced}/>
                             <p className="hidden sm:flex">LICENSE:</p>
                         </span>
-                        <span className="">{repo.license?.name || "No License"}</span>
+                        <span className="line-clamp-1">{repo.license?.name || "No License"}</span>
                     </div>
 
-                    <div className="hidden sm:flex items-center gap-2">
+                </div>
+
+                <div className="mt-4 sm:flex overflow-x-scroll scrollbar-hide border-b border-base-border pb-4">
+                    <div className="flex items-center gap-2">
                         {repo.topics?.map((topic: string) => (
                             <div key={topic} className="py-1.5 px-2.5 text-xs text-base-title bg-base-label rounded-lg duration-200 hover:scale-105">
-                                <span>{topic}</span>
+                                <span className="line-clamp-1 truncate">{topic}</span>
                             </div>
                         ))}
                     </div>
