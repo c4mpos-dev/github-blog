@@ -42,10 +42,12 @@ export function Repository() {
                     
                     <div className="mt-4 flex text-sm text-base-span">
                         <div className="flex w-full items-center mt-auto gap-2 text-sm text-base-span">
-                            <div className="flex items-center gap-2 mr-auto sm:mr-7">
-                                <FontAwesomeIcon icon={faGithub} className="text-lg text-base-label"/>
-                                {userData?.login}
-                            </div>
+                            { repo.language.length <= 10 && 
+                                <div className="flex items-center gap-2 mr-auto sm:mr-7">
+                                    <FontAwesomeIcon icon={faGithub} className="text-lg text-base-label"/>
+                                    {userData?.login}
+                                </div>
+                            }
 
                             <p><FontAwesomeIcon icon={faStar}/> {repo.stargazers_count}</p>
 
@@ -54,7 +56,7 @@ export function Repository() {
                                     <p>|</p>
                                     <p className="flex items-center gap-2">
                                         <FontAwesomeIcon icon={faCode}/>
-                                        {repo.language}
+                                        <p className="">{repo.language}</p>
                                     </p>
                                 </div>
                             )}

@@ -43,7 +43,7 @@ export function RepositoryList() {
                                     )}
                                 </div>
 
-                                <a href={repo.html_url} target="_blank" className="flex items-center gap-2.5 mt-2 text-blue hover:underline">
+                                <a href={repo.html_url} target="_blank" className="flex items-center w-32 gap-2.5 mt-2 text-blue hover:underline">
                                     Ver no GitHub
                                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-sm"/>
                                 </a>
