@@ -42,12 +42,10 @@ export function Repository() {
                     
                     <div className="mt-4 flex text-sm text-base-span">
                         <div className="flex w-full items-center mt-auto gap-2 text-sm text-base-span">
-                            { repo.language.length <= 10 && 
-                                <div className="flex items-center gap-2 mr-auto sm:mr-7">
-                                    <FontAwesomeIcon icon={faGithub} className="text-lg text-base-label"/>
-                                    {userData?.login}
-                                </div>
-                            }
+                            <div className="flex items-center gap-2 mr-auto sm:mr-7">
+                                <FontAwesomeIcon icon={faGithub} className="text-lg text-base-label"/>
+                                {userData?.login}
+                            </div> 
 
                             <p><FontAwesomeIcon icon={faStar}/> {repo.stargazers_count}</p>
 
@@ -77,15 +75,17 @@ export function Repository() {
 
                 </div>
 
-                <div className="mt-4 sm:flex overflow-x-scroll scrollbar-hide border-b border-base-border pb-4">
-                    <div className="flex items-center gap-2">
-                        {repo.topics?.map((topic: string) => (
-                            <div key={topic} className="py-1.5 px-2.5 text-xs text-base-title bg-base-label rounded-lg duration-200 hover:scale-105">
-                                <span className="line-clamp-1 truncate">{topic}</span>
-                            </div>
-                        ))}
+                { repo.topics?.length > 0 && (
+                    <div className="mt-4 sm:flex overflow-x-scroll scrollbar-hide border-b border-base-border pb-4">
+                        <div className="flex items-center gap-2">
+                            {repo.topics?.map((topic: string) => (
+                                <div key={topic} className="py-1.5 px-2.5 text-xs text-base-title bg-base-label rounded-lg duration-200 hover:scale-105">
+                                    <span className="line-clamp-1 truncate">{topic}</span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
+                )}
 
                 <div className="flex mt-4 border-b border-base-border pb-4">
                     <p>{repo.description || "No description."}</p>
